@@ -1,0 +1,19 @@
+{
+	"manifest_version": 2, 
+ 	"name": "GradeMyGold",
+ 	"version": "1.0",
+ 	"author": "Casey Barbello",
+ 	"description": "Easily calculate your predicted GPA within GOLD.", 
+
+	"permissions": [
+		"tabs"
+	],
+
+ 	"content_scripts": [
+		{
+		"matches": ["https://my.sa.ucsb.edu/gold/StudentGrades.aspx"],
+		"css": ["sheet.css"],
+		"js": ["main.js"]
+	 	}
+ 	 ]
+}
