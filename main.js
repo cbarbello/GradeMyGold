@@ -154,7 +154,7 @@ function createDropDown()
 	D_Minus_Grade.value = 0.70;
 	F_Grade.value = 0.00;
 
-	no_Grade.text = "";
+	no_Grade.text = "P/NP";
 	A_Grade.text = 'A';
 	A_Minus_Grade.text = 'A-';
 	B_Plus_Grade.text  = 'B+';

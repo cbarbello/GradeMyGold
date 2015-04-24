@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2, 
  	"name": "GradeMyGold",
- 	"version": "1.0",
+ 	"version": "1.1",
  	"author": "Casey Barbello",
  	"description": "Easily calculate your predicted GPA within GOLD.", 
 
