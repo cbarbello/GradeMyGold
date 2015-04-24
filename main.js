@@ -5,15 +5,15 @@
 
 function main()
 {
+	//check to see if dropdown has "All Quarters" selected. if not, exit program
 	var dropdown = document.getElementById('pageContent_quarterDropDown');
 	var selectedItem = dropdown.options[dropdown.selectedIndex].value;
-	
 	if (selectedItem != 'ALL') { return; }
 	
+	//get the total cumulative units so far
 	var numQuarters = document.getElementsByClassName('quarter').length;
 	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
 	var cumulativeCellList = document.getElementById(cumulativeId).getElementsByClassName('clcellsecondarynoalign');
-
 	var totalGPAUnits = parseFloat(cumulativeCellList[6].innerText);
 	var totalPoints = parseFloat(cumulativeCellList[7].innerText);
 
@@ -26,6 +26,7 @@ function main()
 	//create dropdown menu
 	var dropdown = createDropDown();
 
+	//locate current quarter classes and add dropdown to each one
 	var currentQuarterId = 'pageContent_quarterGrid_gradesByQuarter_' + (numQuarters - 1);
 	var targetTable = document.getElementById(currentQuarterId);
 	var currentQuarterClasses = targetTable.getElementsByTagName('b');
@@ -50,7 +51,7 @@ function main()
 		}
 	}
 
-	//create div to display calculate button and results
+	//create div to display "Calculate GPA" button and results
 	var resultsdiv = document.createElement('div');
 	resultsdiv.className = 'results';
 
@@ -79,6 +80,7 @@ function main()
 
 
 //function to create previous and current class arrays
+//used for cross checking to find if current quarter contains retakes
 function createClassArrays(numQuarters)
 {
 	var previousClassArray = [];
@@ -188,6 +190,7 @@ function createDropDown()
 
 
 //function to calculate GPA when button is pressed
+//accounts for retakes if present in current quarter
 function calculateGPA(totalGPAUnits, totalPoints, unitArray, quarterTotalDiv, cumulativeTotalDiv, previousClassArray, previousPointsArray, currentClassArray) 
 {
 	var gradeDropDownList = document.getElementsByClassName('gradeDropDown');
@@ -227,11 +230,4 @@ function calculateGPA(totalGPAUnits, totalPoints, unitArray, quarterTotalDiv, cu
 	cumulativeTotalDiv.innerHTML = 'Predicted Cumulative GPA: ' + '<b>' + cumulativeGPA + '</b>';
 }
 
-
 main();
-
-
-
-
-
-
