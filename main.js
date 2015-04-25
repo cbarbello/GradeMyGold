@@ -74,7 +74,6 @@ function main()
 	resultsdiv.appendChild(quarterTotalDiv);
 	resultsdiv.appendChild(cumulativeTotalDiv);
 	targetTable.appendChild(resultsdiv);
-
 }
 
 
@@ -110,9 +109,9 @@ function createClassArrays(numQuarters)
 				{
 					currentClassArray[currentClassArray.length] = secondaryQuarterList[y].innerText;
 				}
-			}
-		}
-	}
+			}//end else
+		}//end for
+	}//end for
 	return {
 		prev: previousClassArray,
 		points: prevPointsArray,
@@ -198,6 +197,7 @@ function calculateGPA(totalGPAUnits, totalPoints, unitArray, quarterTotalDiv, cu
 	var quarterGPAUnits = 0.0;
 	var quarterPoints = 0.0; 
 
+	//iterate through dropdowns to grab selected value and calculate GPA
 	for (var i = 0; i < numDropDowns; i++) 
 	{
 		var selectedGradeValue = gradeDropDownList[i].options[gradeDropDownList[i].selectedIndex].value;
@@ -213,14 +213,14 @@ function calculateGPA(totalGPAUnits, totalPoints, unitArray, quarterTotalDiv, cu
 			quarterGPAUnits += unitArray[i];
 			totalPoints += selectedGradeValue * unitArray[i];
 			totalGPAUnits += unitArray[i];
-		}
-	}
+		}//end if
+	}//end for
 
+	//UCSB rounds down, so these GPA calculations truncate any decimal places past x.xx
 	var quarterGPA = (Math.floor((quarterPoints / quarterGPAUnits) * 100) / 100).toFixed(2);
 	var cumulativeGPA = (Math.floor((totalPoints / totalGPAUnits) * 100) / 100).toFixed(2);
 
-	if (isNaN(quarterGPA))
-	{
+	if (isNaN(quarterGPA)) {
 		quarterTotalDiv.innerHTML = 'Predicted Quarter GPA: <b>None</b>';
 	}
 	else 
