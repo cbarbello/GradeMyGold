@@ -1,7 +1,7 @@
 /* GradeMyGold                                                                              */
 /* -Easily predict your future GPA within GOLD-      										*/
 /* Casey Barbello																			*/
-/* Jan.31.2015                                                                              */
+/* April.22.2015                                                                            */
 
 function main()
 {
@@ -12,6 +12,7 @@ function main()
 	
 	//get the total cumulative units so far
 	var numQuarters = document.getElementsByClassName('quarter').length;
+	if (!isLastQuarterCurrentQuarter(numQuarters)) { numQuarters--; }
 	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
 	var cumulativeCellList = document.getElementById(cumulativeId).getElementsByClassName('clcellsecondarynoalign');
 	var totalGPAUnits = parseFloat(cumulativeCellList[6].innerText);
@@ -78,6 +79,21 @@ function main()
 
 
 
+//function used to determine if the last quarter shown is actually the current quarter
+//if it isnt, then the current quarter is the one above and we need to decrement numQuarters
+function isLastQuarterCurrentQuarter(numQuarters)
+{
+	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
+	var cumulativeElement = document.getElementById(cumulativeId);
+	if (cumulativeElement == null) 
+	{
+		return false;
+	}
+	return true;
+}
+
+
+
 //function to create previous and current class arrays
 //used for cross checking to find if current quarter contains retakes
 function createClassArrays(numQuarters)
@@ -96,7 +112,7 @@ function createClassArrays(numQuarters)
 			{
 				previousClassArray[previousClassArray.length] = primaryQuarterList[y].innerText;
 				prevPointsArray[prevPointsArray.length] = parseFloat(primaryQuarterList[y + 6].innerText);
-				if(y < secondaryQuarterList.length)
+				if(y < secondaryQuarterList.length - 1)
 				{
 					previousClassArray[previousClassArray.length] = secondaryQuarterList[y].innerText;
 					prevPointsArray[prevPointsArray.length] = parseFloat(secondaryQuarterList[y + 6].innerText);
@@ -105,7 +121,7 @@ function createClassArrays(numQuarters)
 			else
 			{
 				currentClassArray[currentClassArray.length] = primaryQuarterList[y].innerText;
-				if(y < secondaryQuarterList.length)
+				if(y < secondaryQuarterList.length - 1)
 				{
 					currentClassArray[currentClassArray.length] = secondaryQuarterList[y].innerText;
 				}
