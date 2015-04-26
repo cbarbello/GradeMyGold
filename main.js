@@ -13,6 +13,7 @@ function main()
 	//get the total cumulative units so far
 	var numQuarters = document.getElementsByClassName('quarter').length;
 	if (!isLastQuarterCurrentQuarter(numQuarters)) { numQuarters--; }
+	if (isLastQuarterFinalized(numQuarters)) { return; }
 	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
 	var cumulativeCellList = document.getElementById(cumulativeId).getElementsByClassName('clcellsecondarynoalign');
 	var totalGPAUnits = parseFloat(cumulativeCellList[6].innerText);
@@ -85,10 +86,18 @@ function isLastQuarterCurrentQuarter(numQuarters)
 {
 	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
 	var cumulativeElement = document.getElementById(cumulativeId);
-	if (cumulativeElement == null) 
-	{
-		return false;
-	}
+	if (cumulativeElement == null) { return false; }
+	return true;
+}
+
+
+
+//function used to determine if the last quarter shown is finalized
+//this would happen if the user has completed school
+function isLastQuarterFinalized(numQuarters) {
+	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 1);
+	var cumulativeElement = document.getElementById(cumulativeId);
+	if (cumulativeElement == null) { return false; }
 	return true;
 }
 
