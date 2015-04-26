@@ -37,6 +37,10 @@ function main()
 	for (var i = 0; i < numClasses; i++)
 	{   
 		var dropdownClone = dropdown.cloneNode(true);
+		var finalizedGrade = currentQuarterClasses[i].innerText;
+		if (finalizedGrade.length > 0) {
+			setGradeAndHideDropdown(finalizedGrade, dropdownClone);
+		}
 		currentQuarterClasses[i].parentNode.appendChild(dropdownClone);
 	}
 	
@@ -101,6 +105,29 @@ function isLastQuarterFinalized(numQuarters) {
 	return true;
 }
 
+
+//function to hide dropdown and set selected index accordingly if grade is present
+//this happens when grades begin to show up before quarter has finished
+function setGradeAndHideDropdown(grade, dropdown)
+{
+	if (grade.charAt(1) == ' ') 
+	{ 
+		grade = grade.slice(0, -1); 
+	}
+	if (grade != 'P' && grade != 'NP')
+	{
+		for (var opt, j = 0; opt = dropdown.options[j]; j++)
+		{
+			if (opt.innerText == grade){
+				dropdown.selectedIndex = j;
+				break;
+			}
+		}
+	}
+	dropdown.style.display = 'none';
+
+	return dropdown;
+}
 
 
 //function to create previous and current class arrays
