@@ -180,6 +180,7 @@ function createDropDown()
 	dropdown.className = 'gradeDropDown';
 
 	var no_Grade = new Option();
+	var A_Plus_Grade = new Option();
 	var A_Grade = new Option();
 	var A_Minus_Grade = new Option();
 	var B_Plus_Grade  = new Option();
@@ -194,6 +195,7 @@ function createDropDown()
 	var F_Grade = new Option();
 
 	no_Grade.value = -1;
+	A_Plus_Grade.value = 4.00;
 	A_Grade.value = 4.00;
 	A_Minus_Grade.value = 3.70;
 	B_Plus_Grade.value  = 3.30;
@@ -207,7 +209,8 @@ function createDropDown()
 	D_Minus_Grade.value = 0.70;
 	F_Grade.value = 0.00;
 
-	no_Grade.text = "P/NP";
+	no_Grade.text = 'P/NP';
+	A_Plus_Grade.text = 'A+'
 	A_Grade.text = 'A';
 	A_Minus_Grade.text = 'A-';
 	B_Plus_Grade.text  = 'B+';
@@ -222,6 +225,7 @@ function createDropDown()
 	F_Grade.text = 'F';
 
 	dropdown.options.add(no_Grade);
+	dropdown.options.add(A_Plus_Grade);
 	dropdown.options.add(A_Grade);
 	dropdown.options.add(A_Minus_Grade);
 	dropdown.options.add(B_Plus_Grade);
