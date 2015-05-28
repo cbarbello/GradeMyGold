@@ -12,7 +12,7 @@ function main()
 	
 	//get the total cumulative units so far
 	var numQuarters = document.getElementsByClassName('quarter').length;
-	if (!isLastQuarterCurrentQuarter(numQuarters)) { numQuarters--; }
+	numQuarters = findCurrentQuarter(numQuarters);
 	if (isLastQuarterFinalized(numQuarters)) { return; }
 	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
 	var cumulativeCellList = document.getElementById(cumulativeId).getElementsByClassName('clcellsecondarynoalign');
@@ -84,16 +84,21 @@ function main()
 
 
 
-//function used to determine if the last quarter shown is actually the current quarter
-//if it isnt, then the current quarter is the one above and we need to decrement numQuarters
-function isLastQuarterCurrentQuarter(numQuarters)
+//function used to determine where the current quarter is
+function findCurrentQuarter(numQuarters)
 {
-	var cumulativeId = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
-	var cumulativeElement = document.getElementById(cumulativeId);
-	if (cumulativeElement == null) { return false; }
-	return true;
+	var cumulativeId_A = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 2);
+	var cumulativeId_B = 'pageContent_quarterGrid_cumulativeTotalGrid_' + (numQuarters - 3);
+	var cumulativeElement_A = document.getElementById(cumulativeId_A);
+	var cumulativeElement_B = document.getElementById(cumulativeId_B);
+	if (cumulativeElement_A == null && cumulativeElement_B == null) {
+		return numQuarters - 2;
+	}
+	else if (cumulativeElement_A == null) {
+		return numQuarters - 1;
+	}
+	return numQuarters;
 }
-
 
 
 //function used to determine if the last quarter shown is finalized
