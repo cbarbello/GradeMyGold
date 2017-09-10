@@ -45,7 +45,7 @@ function main()
 	}
 	
 	//get number of units for each class
-	var	unitsArray = [];
+	var unitsArray = [];
 	var primaryList = targetTable.getElementsByClassName('clcellprimarynoalign');
 	var secondaryList = targetTable.getElementsByClassName('clcellsecondarynoalign');
 	for (var i = 3; i < primaryList.length; i += 8)
@@ -284,8 +284,7 @@ function calculateGPA(totalGPAUnits, totalPoints, unitArray, quarterTotalDiv, cu
 	if (isNaN(quarterGPA)) {
 		quarterTotalDiv.innerHTML = 'Predicted Quarter GPA: <b>None</b>';
 	}
-	else 
-	{
+	else {
 		quarterTotalDiv.innerHTML = 'Predicted Quarter GPA: ' + '<b>' + quarterGPA + '</b>';
 	}
 	cumulativeTotalDiv.innerHTML = 'Predicted Cumulative GPA: ' + '<b>' + cumulativeGPA + '</b>';
