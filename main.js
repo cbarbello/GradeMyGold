@@ -166,9 +166,9 @@ function createClassArrays(numQuarters)
         {
           currentClassArray[currentClassArray.length] = secondaryQuarterList[y].innerText;
         }
-      }//end else
-    }//end for
-  }//end for
+      }
+    }
+  }
   return {
     prev: previousClassArray,
     points: prevPointsArray,
@@ -274,8 +274,8 @@ function calculateGPA(totalGPAUnits, totalPoints, unitArray, quarterTotalDiv, cu
       quarterGPAUnits += unitArray[i];
       totalPoints += selectedGradeValue * unitArray[i];
       totalGPAUnits += unitArray[i];
-    }//end if
-  }//end for
+    }
+  }
 
   //UCSB rounds down, so these GPA calculations truncate any decimal places past x.xx
   var quarterGPA = (Math.floor((quarterPoints / quarterGPAUnits) * 100) / 100).toFixed(2);
